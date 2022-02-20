@@ -11,8 +11,8 @@ const FormBox = () => {
   return (
     <FormContainer>
       <DbConnectionTextWrapper>
-        <span>Conexão com o banco de dados:</span>
-        <h5>ONLINE</h5>
+        <span>Teste de conexão com o banco de dados:</span>
+        <h5>OK</h5>
       </DbConnectionTextWrapper>
       <Form>
         <InputWrapper>
@@ -24,7 +24,7 @@ const FormBox = () => {
             e.preventDefault();
           }}
         >
-          Enviar
+          Salvar
         </SubmitButton>
       </Form>
     </FormContainer>
