@@ -26,7 +26,7 @@ export const DbConnectionTextWrapper = styled.div`
   h5 {
     margin-left: 0.5rem;
     font-weight: 700;
-    color: #15b511;
+    color: red;
   }
 `;
 

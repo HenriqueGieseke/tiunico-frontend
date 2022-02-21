@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { dateHelper } from '../../helpers/dateHelper';
 import {
   InfoSubtitle,
   DatesContainer,
@@ -9,29 +10,22 @@ import {
 } from './styles';
 
 const MessageCard = ({ message }) => {
-  const dateRegular = new Date(message.date).toLocaleDateString();
-  const dateMonth = new Date(message.date).toLocaleString('default', {
-    month: 'long',
-  });
-  const dateDay = new Date(message.date).toLocaleDateString('default', {
-    weekday: 'long',
-  });
-  const dateTime = new Date(message.date).toLocaleTimeString();
+  const [dateObj] = useState(dateHelper(message.date));
 
   return (
     <MessageCardContainer>
       <DatesContainer>
         <DatesWrapper>
           <InfoSubtitle>Formato 1</InfoSubtitle>
-          <DateText>{dateRegular}</DateText>
+          <DateText>{dateObj.dateRegular}</DateText>
         </DatesWrapper>
         <DatesWrapper>
           <InfoSubtitle>Formato 2</InfoSubtitle>
-          <DateText>{dateDay}</DateText>
+          <DateText>{`${dateObj.yearNumber}-${dateObj.finalMonthNumber}-${dateObj.dayNumber}`}</DateText>
         </DatesWrapper>
         <DatesWrapper>
           <InfoSubtitle>Formato 3</InfoSubtitle>
-          <DateText>{dateTime}</DateText>
+          <DateText>{`${dateObj.weekDay}, ${dateObj.dayNumber} de ${dateObj.dateMonthWord} de ${dateObj.yearNumber} ${dateObj.finalDateTime}`}</DateText>
         </DatesWrapper>
       </DatesContainer>
       <MessageContainer>
