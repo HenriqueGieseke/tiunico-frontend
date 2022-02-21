@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getDbConnectionStatus } from '../../services/getDbConnectionStatus';
+import { postMessage } from '../../services/postMessage';
 import {
   DbConnectionTextWrapper,
   Form,
@@ -8,15 +9,15 @@ import {
   SubmitButton,
 } from './styles';
 
-const FormBox = () => {
+const FormBox = ({ setNewMessage, newMessage }) => {
   const [connectionStatus, setConnectionStatus] = useState(0);
   const [connectionString, setConnectionString] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const fetchStatus = async () => {
       const response = await getDbConnectionStatus();
       setConnectionStatus(response.data.connectionStatus);
-      console.log(response);
       if (connectionStatus === 1) {
         setConnectionString('OK');
       } else if (connectionStatus === 0) {
@@ -31,6 +32,12 @@ const FormBox = () => {
     fetchStatus();
   }, [connectionString, connectionStatus]);
 
+  const submitMessage = async (e) => {
+    e.preventDefault();
+    await postMessage(message);
+    setNewMessage(!newMessage);
+  };
+
   return (
     <FormContainer>
       <DbConnectionTextWrapper>
@@ -39,18 +46,17 @@ const FormBox = () => {
           {connectionString}
         </h5>
       </DbConnectionTextWrapper>
-      <Form>
+      <Form onSubmit={submitMessage}>
         <InputWrapper>
           <label htmlFor="">Mensagem</label>
-          <input type="text" placeholder="Digite a sua mensagem" />
+          <input
+            onChange={(e) => setMessage(e.target.value)}
+            type="text"
+            placeholder="Digite a sua mensagem"
+            required
+          />
         </InputWrapper>
-        <SubmitButton
-          onClick={(e) => {
-            e.preventDefault();
-          }}
-        >
-          Salvar
-        </SubmitButton>
+        <SubmitButton type="submit">Salvar</SubmitButton>
       </Form>
     </FormContainer>
   );

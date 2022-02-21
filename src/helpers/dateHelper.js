@@ -31,7 +31,6 @@ const dateHelper = (date) => {
     let month = new Date(date).getMonth();
     month++;
     const monthString = String(month);
-    console.log(monthString.length);
     if (monthString.length === 1) {
       return `0${monthString}`;
     } else {

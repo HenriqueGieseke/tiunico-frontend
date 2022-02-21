@@ -3,7 +3,6 @@ import MessageCard from '../MessageCard';
 import { MessagesBoxContainer, MessagesWrapper } from './styles';
 
 const MessagesBox = ({ messagesArray, loading }) => {
-  console.log(messagesArray);
   if (loading) {
     return (
       <MessagesBoxContainer>

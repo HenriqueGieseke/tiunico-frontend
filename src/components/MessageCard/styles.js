@@ -34,7 +34,9 @@ export const InfoSubtitle = styled.span`
   margin-bottom: 10px;
 `;
 
-export const DateText = styled.span``;
+export const DateText = styled.span`
+  font-size: 0.9rem;
+`;
 
 export const MessageContainer = styled.div`
   display: flex;
@@ -43,5 +45,6 @@ export const MessageContainer = styled.div`
   flex-direction: column;
 
   span {
+    font-size: 0.9rem;
   }
 `;
