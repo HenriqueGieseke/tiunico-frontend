@@ -8,29 +8,35 @@ import {
   MessageContainer,
 } from './styles';
 
-const MessageCard = () => {
+const MessageCard = ({ message }) => {
+  const dateRegular = new Date(message.date).toLocaleDateString();
+  const dateMonth = new Date(message.date).toLocaleString('default', {
+    month: 'long',
+  });
+  const dateDay = new Date(message.date).toLocaleDateString('default', {
+    weekday: 'long',
+  });
+  const dateTime = new Date(message.date).toLocaleTimeString();
+
   return (
     <MessageCardContainer>
       <DatesContainer>
         <DatesWrapper>
           <InfoSubtitle>Formato 1</InfoSubtitle>
-          <DateText>31/10/2022</DateText>
+          <DateText>{dateRegular}</DateText>
         </DatesWrapper>
         <DatesWrapper>
           <InfoSubtitle>Formato 2</InfoSubtitle>
-          <DateText>2022-10-31</DateText>
+          <DateText>{dateDay}</DateText>
         </DatesWrapper>
         <DatesWrapper>
           <InfoSubtitle>Formato 3</InfoSubtitle>
-          <DateText>Ter, 31 de Outubro de 2022 11:50</DateText>
+          <DateText>{dateTime}</DateText>
         </DatesWrapper>
       </DatesContainer>
       <MessageContainer>
         <InfoSubtitle>Mensagem</InfoSubtitle>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas et
-          malesuada egestas ultrices mi vitae morbi ac.
-        </span>
+        <span>{message.message}</span>
       </MessageContainer>
     </MessageCardContainer>
   );

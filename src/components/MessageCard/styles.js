@@ -9,7 +9,7 @@ export const MessageCardContainer = styled.div`
   transition: all 0.4s;
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 `;
 
